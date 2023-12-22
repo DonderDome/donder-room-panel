@@ -62,7 +62,6 @@ export class BoilerplateCard extends LitElement {
     }
 
     this.config = {
-      name: 'Boilerplate',
       ...config,
     };
   }
@@ -112,13 +111,29 @@ export class BoilerplateCard extends LitElement {
         
       }
       .donder-widget {
-        background-color: transparent;
-        color: var(--text-primary-color);
-        padding: 15px 22px 22px;
-        box-sizing: border-box;
+        display: inline-block;
+        border-radius: 50%;
+        min-width: 20px;
+        min-height: 20px;
+        padding: 5px;
+        background: red;
+        color: white;
         text-align: center;
-        border-radius: var(--ha-card-border-radius)
+        line-height: 1;
+        box-sizing: content-box;
+        white-space: nowrap;
       }
+      .donder-widget:before {
+        content: "";
+        display: inline-block;
+        vertical-align: middle;
+        padding-top: 100%;
+        height: 0;
+      }
+      /* .donder-widget span {
+        display: inline-block;
+        vertical-align: middle;
+      } */
     `;
   }
 
@@ -136,7 +151,7 @@ export class BoilerplateCard extends LitElement {
 
     return html`
       <div class=${`donder-widget ${multiClass}`}>
-        <div class='title'>${stateObj.attributes.friendly_name}</div>
+        <!-- <div class='title'>${stateObj.attributes.friendly_name}</div> -->
         <div class='summary-state'>
           <div class='summary-state'>${friendlyStateName[stateObj.state]}</div>
           <ha-icon icon='mdi:thermometer'></ha-icon>
