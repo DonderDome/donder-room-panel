@@ -137,6 +137,14 @@ export class BoilerplateCard extends LitElement {
         font-weight: lighter;
         line-height: normal;
       }
+      .summary-temp-external {
+        font-size: 1.5rem;
+        font-weight: lighter;
+        line-height: normal;
+      }
+      .summary-state {
+        position: absolute;
+      }
     `;
   }
 
