@@ -5,7 +5,7 @@
 
 | Name              | Type    | Requirement  | Description                                 | Default             |
 | ----------------- | ------- | ------------ | ------------------------------------------- | ------------------- |
-| type              | string  | **Required** | `custom:boilerplate-card`                   |
+| type              | string  | **Required** | `custom:donder-room-panel`                   |
 | name              | string  | **Optional** | Card name                                   | `Boilerplate`       |
 | show_error        | boolean | **Optional** | Show what an error looks like for the card  | `false`             |
 | show_warning      | boolean | **Optional** | Show what a warning looks like for the card | `false`             |

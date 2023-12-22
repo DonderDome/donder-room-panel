@@ -14,13 +14,13 @@ Platform:
   linux x64
 
 Trace: 
-  Error: EACCES: permission denied, unlink '/home/iantrich/Projects/hass/plugins/boilerplate-card/node_modules/.bin/acorn'
+  Error: EACCES: permission denied, unlink '/home/iantrich/Projects/hass/plugins/donder-room-panel/node_modules/.bin/acorn'
 
 npm manifest: 
   {
-    "name": "boilerplate-card",
+    "name": "donder-room-panel",
     "version": "1.4.0",
-    "description": "Lovelace boilerplate-card",
+    "description": "Lovelace donder-room-panel",
     "keywords": [
       "home-assistant",
       "homeassistant",
@@ -29,8 +29,8 @@ npm manifest:
       "lovelace",
       "custom-cards"
     ],
-    "module": "boilerplate-card.js",
-    "repository": "git@github.com:custom_cards/boilerplate-card.git",
+    "module": "donder-room-panel.js",
+    "repository": "git@github.com:custom_cards/donder-room-panel.git",
     "author": "Ian Richardson <iantrich@gmail.com>",
     "license": "MIT",
     "dependencies": {

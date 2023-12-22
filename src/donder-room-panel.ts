@@ -33,7 +33,7 @@ console.info(
 (window as any).customCards = (window as any).customCards || [];
 (window as any).customCards.push({
   type: 'donder-room-panel',
-  name: 'Boilerplate Card',
+  name: 'Donder Room Panel',
   description: 'A template custom card for you to create something awesome',
 });
 
