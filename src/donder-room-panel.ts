@@ -89,9 +89,9 @@ export class BoilerplateCard extends LitElement {
         const { rooms } = env
         const roomId = this.config.room_id
         const room = rooms.filter((room: any) => room.id === roomId)[0]
-        console.log(room)
+
         for (let i=0; i<=room.climate.length-1; i++) {
-          const { entity } = room.climate[i].entity
+          const { entity } = room.climate[i]
           console.log(entity)
           if (entity && oldHass.states[entity] !== element.hass!.states[entity]) {
             hasChanged = true
