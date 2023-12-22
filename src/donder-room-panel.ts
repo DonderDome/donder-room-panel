@@ -180,17 +180,17 @@ export class BoilerplateCard extends LitElement {
       'off': 'Off',
     }
 
-    const icon = {
-      'heat_cool': 'mdi:sun-showflake-variant',
-      'heat': 'mdifire:',
-      'cool': 'mdi:snowflake',
-      'auto': 'mdi:fan',
-      'dry': 'mdi:water',
-      'off': 'mdi:power-standby',
+    const modeColor = {
+      'heat_cool': 'var(--mode-heat-cool-color)',
+      'heat': 'var(--mode-heat-color)',
+      'cool': 'var(--mode-cool-color)',
+      'auto': 'var(--mode-auto-color)',
+      'dry': 'var(--mode-dry-color)',
+      'off': 'var(--mode-off-color)',
     }
 
     return html`
-      <div class=${`donder-widget ${multiClass}`}>
+      <div class=${`donder-widget ${multiClass}`} .style=${{background: modeColor[stateObj.state]}}>
         <!-- <div class='title'>${stateObj.attributes.friendly_name}</div> -->
         <span>
           <div class='summary-state'>
