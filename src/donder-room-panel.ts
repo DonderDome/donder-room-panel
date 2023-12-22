@@ -108,7 +108,7 @@ export class BoilerplateCard extends LitElement {
         background-color: transparent !important;
       }
       .donder-widget-wrapper {
-        padding: 0 10px;
+        padding: 30px;
       }
       .donder-widget {
         display: inline-block;
@@ -154,7 +154,14 @@ export class BoilerplateCard extends LitElement {
       <div class=${`donder-widget ${multiClass}`}>
         <!-- <div class='title'>${stateObj.attributes.friendly_name}</div> -->
         <span class='summary-temp-internal'>
-          ${stateObj.attributes.current_temperature}
+          <div class='summary-state'>
+            <div class='summary-state'>${friendlyStateName[stateObj.state]}</div>
+            <ha-icon icon='mdi:thermometer'></ha-icon>
+          </div>
+          <div class='summary-temp'>
+            <div class='summary-temp-internal'>${stateObj.attributes.current_temperature}</div>
+            <div class='summary-temp-external'>${stateObj.attributes.ext_current_temperature}</div>
+          </div>
         </span>
         <!-- <div class='summary-state'>
           <div class='summary-state'>${friendlyStateName[stateObj.state]}</div>

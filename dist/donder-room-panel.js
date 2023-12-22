@@ -194,7 +194,7 @@ const X=(t,e)=>"method"===e.kind&&e.descriptor&&!("value"in e.descriptor)?{...e,
         background-color: transparent !important;
       }
       .donder-widget-wrapper {
-        padding: 0 10px;
+        padding: 30px;
       }
       .donder-widget {
         display: inline-block;
@@ -221,14 +221,21 @@ const X=(t,e)=>"method"===e.kind&&e.descriptor&&!("value"in e.descriptor)?{...e,
         display: inline-block;
         vertical-align: middle;
       }
-    `}renderThermostat(t,e=!1){const i=this.hass.states[t.entity];return O`
+    `}renderThermostat(t,e=!1){const i=this.hass.states[t.entity],o={heat_cool:"Heat/Cool",heat:"Heat",cool:"Cool",auto:"Auto",off:"Off"};return O`
       <div class=${`donder-widget ${e?"multi":""}`}>
         <!-- <div class='title'>${i.attributes.friendly_name}</div> -->
         <span class='summary-temp-internal'>
-          ${i.attributes.current_temperature}
+          <div class='summary-state'>
+            <div class='summary-state'>${o[i.state]}</div>
+            <ha-icon icon='mdi:thermometer'></ha-icon>
+          </div>
+          <div class='summary-temp'>
+            <div class='summary-temp-internal'>${i.attributes.current_temperature}</div>
+            <div class='summary-temp-external'>${i.attributes.ext_current_temperature}</div>
+          </div>
         </span>
         <!-- <div class='summary-state'>
-          <div class='summary-state'>${{heat_cool:"Heat/Cool",heat:"Heat",cool:"Cool",auto:"Auto",off:"Off"}[i.state]}</div>
+          <div class='summary-state'>${o[i.state]}</div>
           <ha-icon icon='mdi:thermometer'></ha-icon>
         </div>
         <div class='summary-temp'>
