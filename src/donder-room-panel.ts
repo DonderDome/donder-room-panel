@@ -236,12 +236,21 @@ export class BoilerplateCard extends LitElement {
       'off': 'Off',
     }
     const modeClass = stateObj.state
+    const stateIcons = {
+      'heat_cool': 'mdi:sun-snowflake-variant',
+      'heat': 'mdi:fire',
+      'cool': 'mdi:snowflake',
+      'auto': 'mdi:autorenew',
+      'dry': 'mdi:water-percent',
+      'off': 'mdi:power',
+    }
 
     return html`
       <div class=${`donder-widget ${multiClass} ${modeClass}`}>
         <span>
           <div class='summary-state'>
-            ${friendlyStateName[stateObj.state]}
+            <!-- ${friendlyStateName[stateObj.state]} -->
+            <ha-icon icon=${stateIcons[stateObj.state]}></ha-icon>
           </div>
           <div class='summary-temp-internal'>
             <div class='summary-temp-number'>${stateObj.attributes.current_temperature}</div>
