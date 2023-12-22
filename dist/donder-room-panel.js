@@ -228,7 +228,7 @@ const X=(t,e)=>"method"===e.kind&&e.descriptor&&!("value"in e.descriptor)?{...e,
         <!-- <div class='title'>${i.attributes.friendly_name}</div> -->
         <span>
           <div class='summary-temp-internal'>
-            <div class='summary-temp-number'>${i.attributes.current_temperature}
+            <div class='summary-temp-number'>${i.attributes.current_temperature}</div>
             <span class='summary-temp-unit'>${i.attributes.temperature_unit}</span>
           </div>
           <div class='summary-temp-external'>${i.attributes.ext_current_temperature}${i.attributes.temperature_unit}</div>

@@ -165,7 +165,7 @@ export class BoilerplateCard extends LitElement {
         <!-- <div class='title'>${stateObj.attributes.friendly_name}</div> -->
         <span>
           <div class='summary-temp-internal'>
-            <div class='summary-temp-number'>${stateObj.attributes.current_temperature}
+            <div class='summary-temp-number'>${stateObj.attributes.current_temperature}</div>
             <span class='summary-temp-unit'>${stateObj.attributes.temperature_unit}</span>
           </div>
           <div class='summary-temp-external'>${stateObj.attributes.ext_current_temperature}${stateObj.attributes.temperature_unit}</div>
