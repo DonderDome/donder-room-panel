@@ -297,7 +297,7 @@ export class BoilerplateCard extends LitElement {
 
     if (climate.entity) {
       const climateEntity = this.hass.states[climate.entity]
-      status = climateEntity.state+' '+climateEntity.attributes.temperature_unit
+      status = climateEntity.attributes.ext_current_temperature+' '+climateEntity.attributes.temperature_unit
     } else {
       status = this.hass.states['sensor.openweathermap_forecast_temperature'].state+' '+this.hass.states['sensor.openweathermap_forecast_temperature'].attributes.unit_of_measurement
     }
