@@ -70,16 +70,15 @@ export class BoilerplateCard extends LitElement {
     if (!this.config) {
       return false;
     }
-    
+
     return this.hasConfigOrEntityChanged(this, changedProps, false);
   }
 
   protected hasConfigOrEntityChanged(element: any, changedProps: PropertyValues, forceUpdate: boolean): boolean {
-
     if (changedProps.has('config') || forceUpdate) {
       return true;
     }
-
+    console.log(element.config)
     if (element.config!.room_id) {
       const oldHass = changedProps.get('hass') as HomeAssistant | undefined;
       if (oldHass) {
@@ -90,6 +89,7 @@ export class BoilerplateCard extends LitElement {
         const roomId = this.config.room_id
         const room = rooms.filter((room: any) => room.id === roomId)[0]
         const climateEntity = room.climate.entity
+        console.log(climateEntity)
 
         if (climateEntity && oldHass.states[climateEntity] !== element.hass!.states[climateEntity]) {
           hasChanged = true
