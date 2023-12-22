@@ -126,18 +126,24 @@ export class BoilerplateCard extends LitElement {
     const stateObj = this.hass.states[climate.entity]
     const multiClass = multi ? 'multi' : ''
 
-    console.log("thermostat", climate, stateObj)
+    const friendlyStateName = {
+      'heat_cool': 'Heat/Cool',
+      'heat': 'Heat',
+      'cool': 'Cool',
+      'auto': 'Auto',
+      'off': 'Off',
+    }
 
     return html`
       <div class=${`donder-widget ${multiClass}`}>
         <div class='title'>${stateObj.attributes.friendly_name}</div>
         <div class='summary-state'>
-          <div class='summary-state'>${stateObj.state}</div>
+          <div class='summary-state'>${friendlyStateName[stateObj.state]}</div>
           <ha-icon icon='mdi:thermometer'></ha-icon>
         </div>
         <div class='summary-temp'>
-          <div class='summary-temp-internal'>${this.hass.states[climate.internal_temp]}</div>
-          <div class='summary-temp-external'>${this.hass.states[climate.external_temp]}</div>
+          <div class='summary-temp-internal'>${stateObj.attributes.current_temperature}</div>
+          <div class='summary-temp-external'>${stateObj.attributes.ext_current_temperature}</div>
         </div>
       </div>
     `

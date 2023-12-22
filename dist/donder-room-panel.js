@@ -204,16 +204,16 @@ const X=(t,e)=>"method"===e.kind&&e.descriptor&&!("value"in e.descriptor)?{...e,
         text-align: center;
         border-radius: var(--ha-card-border-radius)
       }
-    `}renderThermostat(t,e=!1){const i=this.hass.states[t.entity],o=e?"multi":"";return console.log("thermostat",t,i),O`
-      <div class=${`donder-widget ${o}`}>
+    `}renderThermostat(t,e=!1){const i=this.hass.states[t.entity];return O`
+      <div class=${`donder-widget ${e?"multi":""}`}>
         <div class='title'>${i.attributes.friendly_name}</div>
         <div class='summary-state'>
-          <div class='summary-state'>${i.state}</div>
+          <div class='summary-state'>${{heat_cool:"Heat/Cool",heat:"Heat",cool:"Cool",auto:"Auto",off:"Off"}[i.state]}</div>
           <ha-icon icon='mdi:thermometer'></ha-icon>
         </div>
         <div class='summary-temp'>
-          <div class='summary-temp-internal'>${this.hass.states[t.internal_temp]}</div>
-          <div class='summary-temp-external'>${this.hass.states[t.external_temp]}</div>
+          <div class='summary-temp-internal'>${i.attributes.current_temperature}</div>
+          <div class='summary-temp-external'>${i.attributes.ext_current_temperature}</div>
         </div>
       </div>
     `}render(){if(this.config.show_warning)return this._showWarning("warning message");if(this.config.show_error)return this._showError("error message");const t=this.hass.states["donder_env.global"].attributes,{rooms:e}=t,i=this.config.room_id,o=e.filter((t=>t.id===i))[0];return O`
