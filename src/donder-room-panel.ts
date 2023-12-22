@@ -121,6 +121,24 @@ export class BoilerplateCard extends LitElement {
         white-space: nowrap;
         width: 100%;
       }
+      .donder-widget.heat_cool {
+        background: var(--mode-heat-cool-color);
+      }
+      .donder-widget.heat {
+        background: var(--mode-heat-color);
+      }
+      .donder-widget.cool {
+        background: var(--mode-cool-color);
+      }
+      .donder-widget.auto {
+        background: var(--mode-auto-color);
+      }
+      .donder-widget.dry {
+        background: var(--mode-dry-color);
+      }
+      .donder-widget.off {
+        background: var(--mode-off-color);
+      }
       .donder-widget:before {
         content: "";
         display: inline-block;
@@ -181,19 +199,10 @@ export class BoilerplateCard extends LitElement {
       'dry': 'Dry',
       'off': 'Off',
     }
-
-    const modeColor = {
-      'heat_cool': 'var(--mode-heat-cool-color)',
-      'heat': 'var(--mode-heat-color)',
-      'cool': 'var(--mode-cool-color)',
-      'auto': 'var(--mode-auto-color)',
-      'dry': 'var(--mode-dry-color)',
-      'off': 'var(--mode-off-color)',
-    }
+    const modeClass = stateObj.state
 
     return html`
-      <div class=${`donder-widget ${multiClass}`} .style=${`{background: ${modeColor[stateObj.state]}}`}>
-        <!-- <div class='title'>${stateObj.attributes.friendly_name}</div> -->
+      <div class=${`donder-widget ${multiClass} ${modeClass}`}>
         <span>
           <div class='summary-state'>
             ${friendlyStateName[stateObj.state]}
@@ -204,14 +213,6 @@ export class BoilerplateCard extends LitElement {
           </div>
           <div class='summary-temp-external'>${stateObj.attributes.ext_current_temperature}${stateObj.attributes.temperature_unit}</div>
         </span>
-        <!-- <div class='summary-state'>
-          <div class='summary-state'>${friendlyStateName[stateObj.state]}</div>
-          <ha-icon icon='mdi:thermometer'></ha-icon>
-        </div>
-        <div class='summary-temp'>
-          <div class='summary-temp-internal'>${stateObj.attributes.current_temperature}</div>
-          <div class='summary-temp-external'>${stateObj.attributes.ext_current_temperature}</div>
-        </div> -->
       </div>
     `
   }

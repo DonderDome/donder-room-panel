@@ -207,6 +207,24 @@ const X=(t,e)=>"method"===e.kind&&e.descriptor&&!("value"in e.descriptor)?{...e,
         white-space: nowrap;
         width: 100%;
       }
+      .donder-widget.heat_cool {
+        background: var(--mode-heat-cool-color);
+      }
+      .donder-widget.heat {
+        background: var(--mode-heat-color);
+      }
+      .donder-widget.cool {
+        background: var(--mode-cool-color);
+      }
+      .donder-widget.auto {
+        background: var(--mode-auto-color);
+      }
+      .donder-widget.dry {
+        background: var(--mode-dry-color);
+      }
+      .donder-widget.off {
+        background: var(--mode-off-color);
+      }
       .donder-widget:before {
         content: "";
         display: inline-block;
@@ -252,12 +270,11 @@ const X=(t,e)=>"method"===e.kind&&e.descriptor&&!("value"in e.descriptor)?{...e,
         text-align: center;
         width: 100%;
       }
-    `}renderThermostat(t,e=!1){const i=this.hass.states[t.entity],o={heat_cool:"Heat/Cool",heat:"Heat",cool:"Cool",auto:"Auto",dry:"Dry",off:"Off"};return O`
-      <div class=${`donder-widget ${e?"multi":""}`} .style=${`{background: ${{heat_cool:"var(--mode-heat-cool-color)",heat:"var(--mode-heat-color)",cool:"var(--mode-cool-color)",auto:"var(--mode-auto-color)",dry:"var(--mode-dry-color)",off:"var(--mode-off-color)"}[i.state]}}`}>
-        <!-- <div class='title'>${i.attributes.friendly_name}</div> -->
+    `}renderThermostat(t,e=!1){const i=this.hass.states[t.entity],o=e?"multi":"",n=i.state;return O`
+      <div class=${`donder-widget ${o} ${n}`}>
         <span>
           <div class='summary-state'>
-            ${o[i.state]}
+            ${{heat_cool:"Heat/Cool",heat:"Heat",cool:"Cool",auto:"Auto",dry:"Dry",off:"Off"}[i.state]}
           </div>
           <div class='summary-temp-internal'>
             <div class='summary-temp-number'>${i.attributes.current_temperature}</div>
@@ -265,14 +282,6 @@ const X=(t,e)=>"method"===e.kind&&e.descriptor&&!("value"in e.descriptor)?{...e,
           </div>
           <div class='summary-temp-external'>${i.attributes.ext_current_temperature}${i.attributes.temperature_unit}</div>
         </span>
-        <!-- <div class='summary-state'>
-          <div class='summary-state'>${o[i.state]}</div>
-          <ha-icon icon='mdi:thermometer'></ha-icon>
-        </div>
-        <div class='summary-temp'>
-          <div class='summary-temp-internal'>${i.attributes.current_temperature}</div>
-          <div class='summary-temp-external'>${i.attributes.ext_current_temperature}</div>
-        </div> -->
       </div>
     `}render(){if(this.config.show_warning)return this._showWarning("warning message");if(this.config.show_error)return this._showError("error message");const t=this.hass.states["donder_env.global"].attributes,{rooms:e}=t,i=this.config.room_id,o=e.filter((t=>t.id===i))[0];return O`
       <ha-card
