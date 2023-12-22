@@ -196,7 +196,6 @@ export class BoilerplateCard extends LitElement {
       ha-card.ha-badge .ha-badge-content .ha-badge-title {
         font-size: .8rem;
         font-weight: 400;
-        margin-bottom: 4px;
         opacity: 0.7;
         text-transform: uppercase;
       }
@@ -242,52 +241,14 @@ export class BoilerplateCard extends LitElement {
       ha-card.ha-badge.off ha-icon {
         background: var(--mode-off-color);
       }
-      /* .donder-widget:before {
-        content: "";
-        display: inline-block;
-        vertical-align: middle;
-        padding-top: 100%;
-        height: 0;
-      }
-      .donder-widget span {
-        display: inline-block;
-        vertical-align: middle;
-      } */
-      /* .summary-temp-internal {
-        display: flex;
-        align-items: flex-start;
-        margin-bottom: 5px;
-        margin-top: 10px;
-      }
-      .summary-temp-number {
-        font-size: 4rem;
-        line-height: 4rem;
-        font-weight: lighter;
-      }
-      .summary-temp-unit {
-        font-size: 1.5rem;
-        font-weight: 400;
-        position: relative;
-        top: 10px;
-      }
-      .summary-temp-external {
-        font-weight: 400;
-        opacity: 0.7;
-        line-height: normal;
-        font-size: 1rem;
-      }
-      .summary-state {
-        position: absolute;
-        top: 9%;
-        left: 0;
-        font-size: .8rem;
-        font-weight: 400;
-        line-height: normal;
-        opacity: 0.7;
-        text-align: center;
-        width: 100%;
-      } */
     `;
+  }
+
+  private toggleMoreInfo(ev: Event, entity): void {
+    console.log(ev, entity)
+    this.hass.callService('browser_mod', 'more_info', {
+      entity: entity,
+    })
   }
 
   protected renderThermostat(climate: any) {
@@ -318,7 +279,7 @@ export class BoilerplateCard extends LitElement {
         const modeClass = climateEntity.state
 
         widgetDom = html`
-          <div class="room-temp">
+          <div class="room-temp" @click=${(ev) => this.toggleMoreInfo(ev, climate.entity)}>
             <span class='room-temp-number'>${climateEntity.attributes.current_temperature}</span>
             <span class='room-temp-unit'>${climateEntity.attributes.temperature_unit}</span>
           </div>
@@ -352,13 +313,8 @@ export class BoilerplateCard extends LitElement {
       `
     } else {
       return null
-    }
-    
+    }    
   }
-
-  // protected renderScene() {
-
-  // }
 
   protected renderExternaTemp(climate: any) {
     let status = ''
