@@ -175,7 +175,7 @@ export class BoilerplateCard extends LitElement {
       }
       ha-card.ha-badge ha-icon {
         border-radius: 50%;
-        background-color: rgba(255, 255, 255, 0.3);
+        background-color: var(--card-background-color);
         width: 42px;
         min-width: 42px;
         height: 42px;
@@ -245,7 +245,7 @@ export class BoilerplateCard extends LitElement {
   }
 
   private toggleMoreInfo(ev: Event, entity): void {
-    console.log(ev, entity)
+    ev.stopPropagation();
     this.hass.callService('browser_mod', 'more_info', {
       entity: entity,
     })
@@ -290,6 +290,7 @@ export class BoilerplateCard extends LitElement {
               hasHold: hasAction(this.config.hold_action),
               hasDoubleClick: hasAction(this.config.double_tap_action),
             })}
+            @click=${(ev) => this.toggleMoreInfo(ev, climate.entity)}
             class=${`ha-badge ${modeClass}`}
           >
             <ha-icon icon=${stateIcons[climateEntity.state]}></ha-icon>
