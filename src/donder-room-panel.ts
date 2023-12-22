@@ -106,6 +106,7 @@ export class BoilerplateCard extends LitElement {
       .type-custom-donder-room-panel {
         height: 100%;
         width: 100%;
+        background-color: transparent !important;
       }
       .donder-widget-wrapper {
         
@@ -135,8 +136,8 @@ export class BoilerplateCard extends LitElement {
           <ha-icon icon='mdi:thermometer'></ha-icon>
         </div>
         <div class='summary-temp'>
-          <div class='summary-temp-internal'>${climate.internal_temp}</div>
-          <div class='summary-temp-external'>${climate.external_temp}</div>
+          <div class='summary-temp-internal'>${this.hass.states[climate.internal_temp]}</div>
+          <div class='summary-temp-external'>${this.hass.states[climate.external_temp]}</div>
         </div>
       </div>
     `
@@ -157,11 +158,10 @@ export class BoilerplateCard extends LitElement {
     }
 
     const env = this.hass.states['donder_env.global'].attributes
-    const scenes = this.hass.states['donder_scenes.global']?.attributes
+    // const scenes = this.hass.states['donder_scenes.global']?.attributes
     const { rooms } = env
     const roomId = this.config.room_id
     const room = rooms.filter((room: any) => room.id === roomId)[0]
-    console.log("room", room)
 
     return html`
       <ha-card
@@ -172,7 +172,6 @@ export class BoilerplateCard extends LitElement {
           hasDoubleClick: hasAction(this.config.double_tap_action),
         })}
         tabindex="0"
-        .label=${`Boilerplate: ${this.config || 'No Entity Defined'}`}
       >
         <div class='donder-widget-wrapper'>
           ${room.climate.map((climate: any) => {
