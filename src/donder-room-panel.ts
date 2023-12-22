@@ -138,6 +138,9 @@ export class BoilerplateCard extends LitElement {
         width: 100%;
         background-color: transparent !important;
       }
+      ha-card.ha-badge {
+        background-color: var(--card-background-color) !important;
+      }
       .donder-widget-wrapper {
         padding: 5%;
       }
@@ -248,7 +251,6 @@ export class BoilerplateCard extends LitElement {
 
       if (hasAC) {
         const climateEntity = this.hass.states[climate.entity]
-        console.log("climateEntity", climateEntity)
         const modeClass = climateEntity.state
 
         widgetDom = html`
@@ -266,7 +268,7 @@ export class BoilerplateCard extends LitElement {
             <ha-icon icon=${stateIcons[climateEntity.state]}></ha-icon>
             <div class="ha-badge-content">
               <div class="ha-badge-title">Temperature control</div>
-              <div class="ha-badge-status">${friendlyNames[climateEntity.state]}</span>
+              <div class=${`ha-badge-status ${modeClass}`}>${friendlyNames[climateEntity.state]}</span>
             </div>
           </ha-card>
         `

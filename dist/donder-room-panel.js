@@ -193,6 +193,9 @@ const X=(t,e)=>"method"===e.kind&&e.descriptor&&!("value"in e.descriptor)?{...e,
         width: 100%;
         background-color: transparent !important;
       }
+      ha-card.ha-badge {
+        background-color: var(--card-background-color) !important;
+      }
       .donder-widget-wrapper {
         padding: 5%;
       }
@@ -275,7 +278,7 @@ const X=(t,e)=>"method"===e.kind&&e.descriptor&&!("value"in e.descriptor)?{...e,
         text-align: center;
         width: 100%;
       }
-    `}renderThermostat(t){const e=t.entity,i={heat_cool:"mdi:sun-snowflake-variant",heat:"mdi:fire",cool:"mdi:snowflake",auto:"mdi:autorenew",dry:"mdi:water-percent",off:"mdi:power"},o={heat_cool:"Heat/Cool",heat:"Heat",cool:"Cool",auto:"Auto",dry:"Dry",off:"Off"};if(e||t.internal_temp){let n;if(e){const e=this.hass.states[t.entity];console.log("climateEntity",e),e.state,n=O`
+    `}renderThermostat(t){const e=t.entity,i={heat_cool:"mdi:sun-snowflake-variant",heat:"mdi:fire",cool:"mdi:snowflake",auto:"mdi:autorenew",dry:"mdi:water-percent",off:"mdi:power"},o={heat_cool:"Heat/Cool",heat:"Heat",cool:"Cool",auto:"Auto",dry:"Dry",off:"Off"};if(e||t.internal_temp){let n;if(e){const e=this.hass.states[t.entity],s=e.state;n=O`
           <span class='room-temp-number'>${e.attributes.current_temperature}</span>
           <span class='room-temp-unit'>${e.attributes.temperature_unit}</span>
 
@@ -287,7 +290,7 @@ const X=(t,e)=>"method"===e.kind&&e.descriptor&&!("value"in e.descriptor)?{...e,
             <ha-icon icon=${i[e.state]}></ha-icon>
             <div class="ha-badge-content">
               <div class="ha-badge-title">Temperature control</div>
-              <div class="ha-badge-status">${o[e.state]}</span>
+              <div class=${`ha-badge-status ${s}`}>${o[e.state]}</span>
             </div>
           </ha-card>
         `}else{const e=this.hass.states[t.internal_temp];n=O`
