@@ -300,7 +300,7 @@ const X=(t,e)=>"method"===e.kind&&e.descriptor&&!("value"in e.descriptor)?{...e,
         display: inline-block;
         vertical-align: middle;
       } */
-      .summary-temp-internal {
+      /* .summary-temp-internal {
         display: flex;
         align-items: flex-start;
         margin-bottom: 5px;
@@ -333,7 +333,7 @@ const X=(t,e)=>"method"===e.kind&&e.descriptor&&!("value"in e.descriptor)?{...e,
         opacity: 0.7;
         text-align: center;
         width: 100%;
-      }
+      } */
     `}renderThermostat(t){const e=t.entity,i={heat_cool:"mdi:sun-snowflake-variant",heat:"mdi:fire",cool:"mdi:snowflake",auto:"mdi:autorenew",dry:"mdi:water-percent",off:"mdi:power"},o={heat_cool:"Heat/Cool",heat:"Heat",cool:"Cool",auto:"Auto",dry:"Dry",off:"Off"};if(e||t.internal_temp){let n;if(e){const e=this.hass.states[t.entity],s=e.state;n=O`
           <div class="room-temp">
             <span class='room-temp-number'>${e.attributes.current_temperature}</span>

@@ -245,7 +245,7 @@ export class BoilerplateCard extends LitElement {
         display: inline-block;
         vertical-align: middle;
       } */
-      .summary-temp-internal {
+      /* .summary-temp-internal {
         display: flex;
         align-items: flex-start;
         margin-bottom: 5px;
@@ -278,7 +278,7 @@ export class BoilerplateCard extends LitElement {
         opacity: 0.7;
         text-align: center;
         width: 100%;
-      }
+      } */
     `;
   }
 
