@@ -70,7 +70,7 @@ export class BoilerplateCard extends LitElement {
     if (!this.config) {
       return false;
     }
-
+    console.log(hasConfigOrEntityChanged(this, changedProps, false));
     return hasConfigOrEntityChanged(this, changedProps, false);
   }
 
@@ -135,6 +135,8 @@ export class BoilerplateCard extends LitElement {
       .summary-temp-internal {
         display: flex;
         align-items: flex-start;
+        margin-bottom: 5px;
+        margin-top: 10px;
       }
       .summary-temp-number {
         font-size: 4rem;
@@ -148,19 +150,19 @@ export class BoilerplateCard extends LitElement {
         top: 10px;
       }
       .summary-temp-external {
-        font-size: 1rem;
         font-weight: 400;
+        opacity: 0.7;
         line-height: normal;
-        opacity: 0.8;
+        font-size: 1.2rem;
       }
       .summary-state {
         position: absolute;
-        top: 5%;
+        top: 9%;
         left: 0;
         font-size: 1rem;
         font-weight: 400;
         line-height: normal;
-        opacity: 0.8;
+        opacity: 0.7;
         text-align: center;
         width: 100%;
       }
@@ -190,7 +192,7 @@ export class BoilerplateCard extends LitElement {
     }
 
     return html`
-      <div class=${`donder-widget ${multiClass}`} .style=${{background: modeColor[stateObj.state]}}>
+      <div class=${`donder-widget ${multiClass}`} .style=${`{background: ${modeColor[stateObj.state]}}`}>
         <!-- <div class='title'>${stateObj.attributes.friendly_name}</div> -->
         <span>
           <div class='summary-state'>
