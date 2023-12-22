@@ -92,6 +92,7 @@ export class BoilerplateCard extends LitElement {
 
         for (let i=0; i<=room.climate.length-1; i++) {
           const { entity } = room.climate[i].entity
+          console.log(entity)
           if (entity && oldHass.states[entity] !== element.hass!.states[entity]) {
             hasChanged = true
             break
