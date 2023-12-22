@@ -75,6 +75,7 @@ export class BoilerplateCard extends LitElement {
   }
 
   protected hasConfigOrEntityChanged(element: any, changedProps: PropertyValues, forceUpdate: boolean): boolean {
+    
     if (changedProps.has('config') || forceUpdate) {
       return true;
     }
