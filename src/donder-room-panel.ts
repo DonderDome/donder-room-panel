@@ -140,9 +140,43 @@ export class BoilerplateCard extends LitElement {
       }
       ha-card.ha-badge {
         background-color: var(--card-background-color) !important;
+        box-sizing: border-box;
+        padding: var(--spacing);
+        display: flex;
+        height: auto;
+      }
+      ha-card.ha-badge ha-icon {
+        border-radius: 50%;
+        width: 42px;
+        height: 42px;
+        display: flex;
+        text-align: center;
+        align-content: center;
+        align-items: center;
+        justify-content: center;
+      }
+      ha-card.ha-badge .ha-badge-content {
+        margin-left: 16px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        align-content: center;
+      }
+      ha-card.ha-badge .ha-badge-content .ha-badge-title {
+        font-size: 1rem;
+        font-weight: 400;
+        margin-bottom: 4px;
+        opacity: 0.7;
+        text-transform: uppercase;
+      }
+      ha-card.ha-badge .ha-badge-content .ha-badge-status {
+        font-size: 1.2rem;
+        font-weight: 500;
+        line-height: normal;
       }
       .donder-widget-wrapper {
-        padding: 5%;
+        /* padding: 5%; */
       }
       .donder-widget {
         display: inline-block;
