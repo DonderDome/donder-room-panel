@@ -70,6 +70,7 @@ export class BoilerplateCard extends LitElement {
     if (!this.config) {
       return false;
     }
+    
     return this.hasConfigOrEntityChanged(this, changedProps, false);
   }
 
