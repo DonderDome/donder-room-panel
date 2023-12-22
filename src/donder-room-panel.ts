@@ -145,17 +145,24 @@ export class BoilerplateCard extends LitElement {
         margin-top: 20px;
         text-transform: uppercase;
       }
+      .room-temp-wrapper {
+
+      }
       .room-temp {
         display: flex;
+        margin-bottom: 30px;
         align-items: flex-start;
-        margin-bottom: 5px;
+        margin-top: 30px;
+        justify-content: center;
       }
       .room-temp-number {
         font-size: 6.5rem;
-        line-height: normal;
+        line-height: 6.5rem;
       }
       .room-temp-unit {
-
+        font-size: 1.5rem;
+        position: relative;
+        top: 10px;
       }
       ha-card.ha-badge {
         background-color: var(--card-background-color) !important;
@@ -211,27 +218,27 @@ export class BoilerplateCard extends LitElement {
         white-space: nowrap;
         width: 100%;
       }
-      ha-card.ha-badge.heat_cool {
+      ha-card.ha-badge.heat_cool ha-icon {
         background: var(--mode-heat-cool-color);
         color: var(--card-background-color);
       }
-      ha-card.ha-badge.heat {
+      ha-card.ha-badge.heat ha-icon {
         background: var(--mode-heat-color);
         color: var(--card-background-color);
       }
-      ha-card.ha-badge.cool {
+      ha-card.ha-badge.cool ha-icon {
         background: var(--mode-cool-color);
         color: var(--card-background-color);
       }
-      ha-card.ha-badge.auto {
+      ha-card.ha-badge.auto ha-icon {
         background: var(--mode-auto-color);
         color: var(--card-background-color);
       }
-      ha-card.ha-badge.dry {
+      ha-card.ha-badge.dry ha-icon {
         background: var(--mode-dry-color);
         color: var(--card-background-color);
       }
-      ha-card.ha-badge.off {
+      ha-card.ha-badge.off ha-icon {
         background: var(--mode-off-color);
       }
       /* .donder-widget:before {
@@ -310,7 +317,7 @@ export class BoilerplateCard extends LitElement {
         const modeClass = climateEntity.state
 
         widgetDom = html`
-          <div class="room-temp">
+          <div class="room-temp-wrapper">
             <span class='room-temp-number'>${climateEntity.attributes.current_temperature}</span>
             <span class='room-temp-unit'>${climateEntity.attributes.temperature_unit}</span>
           </div>
