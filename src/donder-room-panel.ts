@@ -148,6 +148,7 @@ export class BoilerplateCard extends LitElement {
       ha-card.ha-badge ha-icon {
         border-radius: 50%;
         width: 42px;
+        min-width: 42px;
         height: 42px;
         display: flex;
         text-align: center;
@@ -244,13 +245,13 @@ export class BoilerplateCard extends LitElement {
         font-weight: 400;
         opacity: 0.7;
         line-height: normal;
-        font-size: 1.2rem;
+        font-size: 1rem;
       }
       .summary-state {
         position: absolute;
         top: 9%;
         left: 0;
-        font-size: 1rem;
+        font-size: .8rem;
         font-weight: 400;
         line-height: normal;
         opacity: 0.7;
@@ -301,7 +302,7 @@ export class BoilerplateCard extends LitElement {
           >
             <ha-icon icon=${stateIcons[climateEntity.state]}></ha-icon>
             <div class="ha-badge-content">
-              <div class="ha-badge-title">Temperature control</div>
+              <div class="ha-badge-title">Thermostat</div>
               <div class=${`ha-badge-status ${modeClass}`}>${friendlyNames[climateEntity.state]}</span>
             </div>
           </ha-card>
@@ -348,7 +349,7 @@ export class BoilerplateCard extends LitElement {
       >
         <ha-icon icon="mdi:thermometer"></ha-icon>
         <div class="ha-badge-content">
-          <div class="ha-badge-title">External Temperature</div>
+          <div class="ha-badge-title">Outside</div>
           <div class="ha-badge-status">${status}</div>
         </div>
       </ha-card>

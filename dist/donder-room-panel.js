@@ -203,6 +203,7 @@ const X=(t,e)=>"method"===e.kind&&e.descriptor&&!("value"in e.descriptor)?{...e,
       ha-card.ha-badge ha-icon {
         border-radius: 50%;
         width: 42px;
+        min-width: 42px;
         height: 42px;
         display: flex;
         text-align: center;
@@ -299,13 +300,13 @@ const X=(t,e)=>"method"===e.kind&&e.descriptor&&!("value"in e.descriptor)?{...e,
         font-weight: 400;
         opacity: 0.7;
         line-height: normal;
-        font-size: 1.2rem;
+        font-size: 1rem;
       }
       .summary-state {
         position: absolute;
         top: 9%;
         left: 0;
-        font-size: 1rem;
+        font-size: .8rem;
         font-weight: 400;
         line-height: normal;
         opacity: 0.7;
@@ -323,7 +324,7 @@ const X=(t,e)=>"method"===e.kind&&e.descriptor&&!("value"in e.descriptor)?{...e,
           >
             <ha-icon icon=${i[e.state]}></ha-icon>
             <div class="ha-badge-content">
-              <div class="ha-badge-title">Temperature control</div>
+              <div class="ha-badge-title">Thermostat</div>
               <div class=${`ha-badge-status ${s}`}>${o[e.state]}</span>
             </div>
           </ha-card>
@@ -341,7 +342,7 @@ const X=(t,e)=>"method"===e.kind&&e.descriptor&&!("value"in e.descriptor)?{...e,
       >
         <ha-icon icon="mdi:thermometer"></ha-icon>
         <div class="ha-badge-content">
-          <div class="ha-badge-title">External Temperature</div>
+          <div class="ha-badge-title">Outside</div>
           <div class="ha-badge-status">${e}</div>
         </div>
       </ha-card>
