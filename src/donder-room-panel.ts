@@ -155,6 +155,14 @@ export class BoilerplateCard extends LitElement {
       }
       .summary-state {
         position: absolute;
+        top: 5%;
+        left: 0;
+        font-size: 1rem;
+        font-weight: 400;
+        line-height: normal;
+        opacity: 0.8;
+        text-align: center;
+        width: 100%;
       }
     `;
   }
@@ -186,7 +194,7 @@ export class BoilerplateCard extends LitElement {
         <!-- <div class='title'>${stateObj.attributes.friendly_name}</div> -->
         <span>
           <div class='summary-state'>
-            <ha-icon icon=${icon[stateObj.state]}></ha-icon>
+            ${friendlyStateName[stateObj.state]}
           </div>
           <div class='summary-temp-internal'>
             <div class='summary-temp-number'>${stateObj.attributes.current_temperature}</div>
