@@ -83,7 +83,7 @@ export class BoilerplateCard extends LitElement {
       if (oldHass) {
         let hasChanged = false
         const climateEntity = element.config.room.climate.entity
-        console.log(climateEntity, oldHass.states[climateEntity], element.hass!.states[climateEntity])
+        console.log("update", climateEntity, oldHass.states[climateEntity], element.hass!.states[climateEntity])
         if (climateEntity && oldHass.states[climateEntity] !== element.hass!.states[climateEntity]) {
           hasChanged = true
         }
