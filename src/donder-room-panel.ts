@@ -223,10 +223,9 @@ export class BoilerplateCard extends LitElement {
     `;
   }
 
-  protected renderThermostat(climate, multi = false) {
-    const stateObj = this.hass.states[climate.entity]
-    const multiClass = multi ? 'multi' : ''
-    const modeClass = stateObj.state
+  protected renderThermostat(climate: any) {
+    const hasAC = climate.entity
+    const renderThermostat = hasAC || climate.internal_temp
     const stateIcons = {
       'heat_cool': 'mdi:sun-snowflake-variant',
       'heat': 'mdi:fire',
@@ -235,26 +234,83 @@ export class BoilerplateCard extends LitElement {
       'dry': 'mdi:water-percent',
       'off': 'mdi:power',
     }
+    const friendlyNames = {
+      'heat_cool': 'Heat/Cool',
+      'heat': 'Heat',
+      'cool': 'Cool',
+      'auto': 'Auto',
+      'dry': 'Dry',
+      'off': 'Off',
+    }
 
-    return html`
-      <div class=${`donder-widget ${multiClass} ${modeClass}`}>
-        <span>
-          <div class='summary-state'>
-            <ha-icon icon=${stateIcons[stateObj.state]}></ha-icon>
-          </div>
-          <div class='summary-temp-internal'>
-            <div class='summary-temp-number'>${stateObj.attributes.current_temperature}</div>
-            <span class='summary-temp-unit'>${stateObj.attributes.temperature_unit}</span>
-          </div>
-          <div class='summary-temp-external'>${stateObj.attributes.ext_current_temperature}${stateObj.attributes.temperature_unit}</div>
-        </span>
-      </div>
-    `
+    if (renderThermostat) {
+      let widgetDom 
+
+      if (hasAC) {
+        const climateEntity = this.hass.states[climate.entity]
+        const modeClass = climateEntity.state
+
+        widgetDom = html`
+          <span class='room-temp-number'>${climateEntity.attributes.current_temperature}</span>
+          <span class='room-temp-unit'>${climateEntity.attributes.temperature_unit}</span>
+          <!-- <div class=${`climate-status ${modeClass}`}><ha-icon icon=${stateIcons[climateEntity.state]}></ha-icon></div> -->
+          <ha-card
+            @action=${this._handleAction}
+            .actionHandler=${actionHandler({
+              hasHold: hasAction(this.config.hold_action),
+              hasDoubleClick: hasAction(this.config.double_tap_action),
+            })}
+            class='ha-badge'
+          >
+            <ha-icon icon=${stateIcons[climateEntity.state]}></ha-icon>
+            <div class="ha-badge-content">
+              <div class="ha-badge-title">Status</div>
+              <div class="ha-badge-status">${friendlyNames[climateEntity.state]}</span>
+            </div>
+          </ha-card>
+        `
+      } else {
+        const climateEntity = this.hass.states[climate.internal_temp]
+        widgetDom = html`
+          <span class='room-temp-number'>${climateEntity.state}</span>
+        `
+      }      
+
+      return html`
+        <div class="room-temp">
+          ${widgetDom}
+        </div>
+      `
+    } else {
+      return null
+    }
+    
   }
 
   // protected renderScene() {
 
   // }
+
+  protected renderExternaTemp(climate: any) {
+    const externalTempEntity = climate.external_temp || 'sensor.openweathermap_forecast_temperature'
+    const externalTemp = this.hass.states[externalTempEntity]
+    return html`
+      <ha-card
+        @action=${this._handleAction}
+        .actionHandler=${actionHandler({
+          hasHold: hasAction(this.config.hold_action),
+          hasDoubleClick: hasAction(this.config.double_tap_action),
+        })}
+        class='ha-badge'
+      >
+        <ha-icon icon="mdi:thermometer"></ha-icon>
+        <div class="ha-badge-content">
+          <div class="ha-badge-title">External Temperature</div>
+          <div class="ha-badge-status">${externalTemp.state}${externalTemp.attributes.unit_of_measurement}</div>
+        </div>
+      </ha-card>
+    `
+  }
 
   protected render(): TemplateResult | void {
     // TODO Check for stateObj or other necessary things and render a warning if missing
@@ -271,6 +327,7 @@ export class BoilerplateCard extends LitElement {
     const { rooms } = env
     const roomId = this.config.room_id
     const room = rooms.filter((room: any) => room.id === roomId)[0]
+    const climate = room.climate[0]
 
     return html`
       <ha-card
@@ -283,9 +340,10 @@ export class BoilerplateCard extends LitElement {
         tabindex="0"
       >
         <div class='donder-widget-wrapper'>
-          ${room.climate.map((climate: any) => {
-            return this.renderThermostat(climate, room.climate.map.length > 1)
-          })}
+          <div class="room-title">${room.name}</div>
+          ${this.renderThermostat(climate)} 
+          ${this.renderExternaTemp(climate)}
+          
         </div>
       </ha-card>
     `;
