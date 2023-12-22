@@ -70,12 +70,12 @@ export class BoilerplateCard extends LitElement {
     if (!this.config) {
       return false;
     }
-
+    console.log(this.hasConfigOrEntityChanged(this, changedProps, false))
     return this.hasConfigOrEntityChanged(this, changedProps, false);
   }
 
   protected hasConfigOrEntityChanged(element: any, changedProps: PropertyValues, forceUpdate: boolean): boolean {
-    
+
     if (changedProps.has('config') || forceUpdate) {
       return true;
     }
