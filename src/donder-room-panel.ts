@@ -254,7 +254,7 @@ export class BoilerplateCard extends LitElement {
         widgetDom = html`
           <span class='room-temp-number'>${climateEntity.attributes.current_temperature}</span>
           <span class='room-temp-unit'>${climateEntity.attributes.temperature_unit}</span>
-          <!-- <div class=${`climate-status ${modeClass}`}><ha-icon icon=${stateIcons[climateEntity.state]}></ha-icon></div> -->
+
           <ha-card
             @action=${this._handleAction}
             .actionHandler=${actionHandler({
@@ -294,9 +294,10 @@ export class BoilerplateCard extends LitElement {
 
   protected renderExternaTemp(climate: any) {
     console.log("climate", climate)
-    const externalTempEntity = climate.external_temp || 'sensor.openweathermap_forecast_temperature'
-    const externalTemp = this.hass.states[externalTempEntity]
-    console.log("externalTemp", externalTemp)
+    const externalTempEntity = climate.entity || 'sensor.openweathermap_forecast_temperature'
+    const externalTemp = climate.entity ? this.hass.states[externalTempEntity].attributes.external_temperature : this.hass.states[externalTempEntity]
+    console.log("externalTemp", this.hass.states[externalTempEntity])
+    console.log("externalTemp", this.hass.states['sensor.openweathermap_forecast_temperature'])
     return html`
       <ha-card
         @action=${this._handleAction}
