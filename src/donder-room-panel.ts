@@ -70,7 +70,6 @@ export class BoilerplateCard extends LitElement {
     if (!this.config) {
       return false;
     }
-    console.log(this.hasConfigOrEntityChanged(this, changedProps, false))
     return this.hasConfigOrEntityChanged(this, changedProps, false);
   }
 
@@ -92,7 +91,6 @@ export class BoilerplateCard extends LitElement {
 
         for (let i=0; i<=room.climate.length-1; i++) {
           const { entity } = room.climate[i]
-          console.log(entity)
           if (entity && oldHass.states[entity] !== element.hass!.states[entity]) {
             hasChanged = true
             break
@@ -156,18 +154,23 @@ export class BoilerplateCard extends LitElement {
       }
       .donder-widget.heat_cool {
         background: var(--mode-heat-cool-color);
+        color: var(--card-background-color);
       }
       .donder-widget.heat {
         background: var(--mode-heat-color);
+        color: var(--card-background-color);
       }
       .donder-widget.cool {
         background: var(--mode-cool-color);
+        color: var(--card-background-color);
       }
       .donder-widget.auto {
         background: var(--mode-auto-color);
+        color: var(--card-background-color);
       }
       .donder-widget.dry {
         background: var(--mode-dry-color);
+        color: var(--card-background-color);
       }
       .donder-widget.off {
         background: var(--mode-off-color);
