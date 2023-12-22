@@ -226,15 +226,6 @@ export class BoilerplateCard extends LitElement {
   protected renderThermostat(climate, multi = false) {
     const stateObj = this.hass.states[climate.entity]
     const multiClass = multi ? 'multi' : ''
-
-    const friendlyStateName = {
-      'heat_cool': 'Heat/Cool',
-      'heat': 'Heat',
-      'cool': 'Cool',
-      'auto': 'Auto',
-      'dry': 'Dry',
-      'off': 'Off',
-    }
     const modeClass = stateObj.state
     const stateIcons = {
       'heat_cool': 'mdi:sun-snowflake-variant',
@@ -249,7 +240,6 @@ export class BoilerplateCard extends LitElement {
       <div class=${`donder-widget ${multiClass} ${modeClass}`}>
         <span>
           <div class='summary-state'>
-            <!-- ${friendlyStateName[stateObj.state]} -->
             <ha-icon icon=${stateIcons[stateObj.state]}></ha-icon>
           </div>
           <div class='summary-temp-internal'>

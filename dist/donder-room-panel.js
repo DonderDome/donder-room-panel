@@ -279,7 +279,6 @@ const X=(t,e)=>"method"===e.kind&&e.descriptor&&!("value"in e.descriptor)?{...e,
       <div class=${`donder-widget ${o} ${n}`}>
         <span>
           <div class='summary-state'>
-            <!-- ${{heat_cool:"Heat/Cool",heat:"Heat",cool:"Cool",auto:"Auto",dry:"Dry",off:"Off"}[i.state]} -->
             <ha-icon icon=${{heat_cool:"mdi:sun-snowflake-variant",heat:"mdi:fire",cool:"mdi:snowflake",auto:"mdi:autorenew",dry:"mdi:water-percent",off:"mdi:power"}[i.state]}></ha-icon>
           </div>
           <div class='summary-temp-internal'>
