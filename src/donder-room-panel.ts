@@ -317,7 +317,7 @@ export class BoilerplateCard extends LitElement {
         const modeClass = climateEntity.state
 
         widgetDom = html`
-          <div class="room-temp-wrapper">
+          <div class="room-temp">
             <span class='room-temp-number'>${climateEntity.attributes.current_temperature}</span>
             <span class='room-temp-unit'>${climateEntity.attributes.temperature_unit}</span>
           </div>
@@ -345,7 +345,7 @@ export class BoilerplateCard extends LitElement {
       }      
 
       return html`
-        <div class="room-temp">
+        <div class="room-temp-wrapper">
           ${widgetDom}
         </div>
       `
