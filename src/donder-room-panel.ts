@@ -108,18 +108,15 @@ export class BoilerplateCard extends LitElement {
         background-color: transparent !important;
       }
       .donder-widget-wrapper {
-        padding: 30px;
+        padding: 5%;
       }
       .donder-widget {
         display: inline-block;
         border-radius: 50%;
         min-width: 20px;
         min-height: 20px;
-        padding: 5px;
-        background: red;
-        color: white;
+        background: var(--card-background-color);
         text-align: center;
-        line-height: 1;
         box-sizing: border-box;
         white-space: nowrap;
         width: 100%;
@@ -134,6 +131,11 @@ export class BoilerplateCard extends LitElement {
       .donder-widget span {
         display: inline-block;
         vertical-align: middle;
+      }
+      .summary-temp-internal {
+        font-size: 4rem;
+        font-weight: lighter;
+        line-height: normal;
       }
     `;
   }
@@ -161,11 +163,12 @@ export class BoilerplateCard extends LitElement {
     return html`
       <div class=${`donder-widget ${multiClass}`}>
         <!-- <div class='title'>${stateObj.attributes.friendly_name}</div> -->
-        <span class='summary-temp-internal'>
-          <div class='summary-temp'>
-            <div class='summary-temp-internal'>${stateObj.attributes.current_temperature}</div>
-            <div class='summary-temp-external'>${stateObj.attributes.ext_current_temperature}</div>
+        <span>
+          <div class='summary-temp-internal'>
+            <div class='summary-temp-number'>${stateObj.attributes.current_temperature}
+            <span class='summary-temp-unit'>${stateObj.attributes.temperature_unit}</span>
           </div>
+          <div class='summary-temp-external'>${stateObj.attributes.ext_current_temperature}${stateObj.attributes.temperature_unit}</div>
           <div class='summary-state'>
             <div class='summary-state'>${friendlyStateName[stateObj.state]}</div>
             <ha-icon icon=${icon[stateObj.state]}></ha-icon>
