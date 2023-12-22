@@ -286,7 +286,7 @@ const X=(t,e)=>"method"===e.kind&&e.descriptor&&!("value"in e.descriptor)?{...e,
           >
             <ha-icon icon=${i[e.state]}></ha-icon>
             <div class="ha-badge-content">
-              <div class="ha-badge-title">Status</div>
+              <div class="ha-badge-title">Temperature control</div>
               <div class="ha-badge-status">${o[e.state]}</span>
             </div>
           </ha-card>
@@ -296,7 +296,7 @@ const X=(t,e)=>"method"===e.kind&&e.descriptor&&!("value"in e.descriptor)?{...e,
         <div class="room-temp">
           ${n}
         </div>
-      `}return null}renderExternaTemp(t){console.log("climate",t);const e=t.entity||"sensor.openweathermap_forecast_temperature",i=t.entity?this.hass.states[e].attributes.external_temperature:this.hass.states[e];return console.log("externalTemp",this.hass.states[e]),console.log("externalTemp",this.hass.states["sensor.openweathermap_forecast_temperature"]),O`
+      `}return null}renderExternaTemp(t){let e="";if(t.entity){const i=this.hass.states[t.entity];e=i.state+" "+i.attributes.temperature_unit}else e=this.hass.states["sensor.openweathermap_forecast_temperature"].state+" "+this.hass.states["sensor.openweathermap_forecast_temperature"].attributes.unit_of_measurement;return O`
       <ha-card
         @action=${this._handleAction}
         .actionHandler=${Et({hasHold:_t(this.config.hold_action),hasDoubleClick:_t(this.config.double_tap_action)})}
@@ -305,7 +305,7 @@ const X=(t,e)=>"method"===e.kind&&e.descriptor&&!("value"in e.descriptor)?{...e,
         <ha-icon icon="mdi:thermometer"></ha-icon>
         <div class="ha-badge-content">
           <div class="ha-badge-title">External Temperature</div>
-          <div class="ha-badge-status">${i.state}${i.attributes.unit_of_measurement}</div>
+          <div class="ha-badge-status">${e}</div>
         </div>
       </ha-card>
     `}render(){if(this.config.show_warning)return this._showWarning("warning message");if(this.config.show_error)return this._showError("error message");const t=this.hass.states["donder_env.global"].attributes,{rooms:e}=t,i=this.config.room_id,o=e.filter((t=>t.id===i))[0],n=o.climate[0];return O`
