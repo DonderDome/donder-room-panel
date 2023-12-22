@@ -79,7 +79,7 @@ export class BoilerplateCard extends LitElement {
     if (changedProps.has('config') || forceUpdate) {
       return true;
     }
-    console.log(element.config)
+
     if (element.config!.room_id) {
       const oldHass = changedProps.get('hass') as HomeAssistant | undefined;
       if (oldHass) {
