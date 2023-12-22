@@ -275,7 +275,7 @@ const X=(t,e)=>"method"===e.kind&&e.descriptor&&!("value"in e.descriptor)?{...e,
         text-align: center;
         width: 100%;
       }
-    `}renderThermostat(t){const e=t.entity,i={heat_cool:"mdi:sun-snowflake-variant",heat:"mdi:fire",cool:"mdi:snowflake",auto:"mdi:autorenew",dry:"mdi:water-percent",off:"mdi:power"},o={heat_cool:"Heat/Cool",heat:"Heat",cool:"Cool",auto:"Auto",dry:"Dry",off:"Off"};if(e||t.internal_temp){let n;if(e){const e=this.hass.states[t.entity],s=e.state;n=O`
+    `}renderThermostat(t){const e=t.entity,i={heat_cool:"mdi:sun-snowflake-variant",heat:"mdi:fire",cool:"mdi:snowflake",auto:"mdi:autorenew",dry:"mdi:water-percent",off:"mdi:power"},o={heat_cool:"Heat/Cool",heat:"Heat",cool:"Cool",auto:"Auto",dry:"Dry",off:"Off"};if(e||t.internal_temp){let n;if(e){const e=this.hass.states[t.entity];console.log("climateEntity",e);const s=e.state;n=O`
           <span class='room-temp-number'>${e.attributes.current_temperature}</span>
           <span class='room-temp-unit'>${e.attributes.temperature_unit}</span>
           <!-- <div class=${`climate-status ${s}`}><ha-icon icon=${i[e.state]}></ha-icon></div> -->
@@ -296,7 +296,7 @@ const X=(t,e)=>"method"===e.kind&&e.descriptor&&!("value"in e.descriptor)?{...e,
         <div class="room-temp">
           ${n}
         </div>
-      `}return null}renderExternaTemp(t){console.log(t);const e=t.external_temp||"sensor.openweathermap_forecast_temperature",i=this.hass.states[e];return console.log(i),O`
+      `}return null}renderExternaTemp(t){console.log("climate",t);const e=t.external_temp||"sensor.openweathermap_forecast_temperature",i=this.hass.states[e];return console.log("externalTemp",i),O`
       <ha-card
         @action=${this._handleAction}
         .actionHandler=${Et({hasHold:_t(this.config.hold_action),hasDoubleClick:_t(this.config.double_tap_action)})}

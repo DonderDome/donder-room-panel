@@ -248,6 +248,7 @@ export class BoilerplateCard extends LitElement {
 
       if (hasAC) {
         const climateEntity = this.hass.states[climate.entity]
+        console.log("climateEntity", climateEntity)
         const modeClass = climateEntity.state
 
         widgetDom = html`
@@ -292,10 +293,10 @@ export class BoilerplateCard extends LitElement {
   // }
 
   protected renderExternaTemp(climate: any) {
-    console.log(climate)
+    console.log("climate", climate)
     const externalTempEntity = climate.external_temp || 'sensor.openweathermap_forecast_temperature'
     const externalTemp = this.hass.states[externalTempEntity]
-    console.log(externalTemp)
+    console.log("externalTemp", externalTemp)
     return html`
       <ha-card
         @action=${this._handleAction}
