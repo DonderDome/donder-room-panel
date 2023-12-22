@@ -133,14 +133,25 @@ export class BoilerplateCard extends LitElement {
         vertical-align: middle;
       }
       .summary-temp-internal {
+        display: flex;
+        align-items: flex-start;
+      }
+      .summary-temp-number {
         font-size: 4rem;
+        line-height: 4rem;
         font-weight: lighter;
-        line-height: normal;
+      }
+      .summary-temp-unit {
+        font-size: 1.5rem;
+        font-weight: 400;
+        position: relative;
+        top: 10px;
       }
       .summary-temp-external {
-        font-size: 1.5rem;
-        font-weight: lighter;
+        font-size: 1rem;
+        font-weight: 400;
         line-height: normal;
+        opacity: 0.8;
       }
       .summary-state {
         position: absolute;
@@ -157,30 +168,31 @@ export class BoilerplateCard extends LitElement {
       'heat': 'Heat',
       'cool': 'Cool',
       'auto': 'Auto',
+      'dry': 'Dry',
       'off': 'Off',
     }
 
     const icon = {
-      'heat_cool': 'mdi:thermostat',
-      'heat': 'mdi:thermometer',
+      'heat_cool': 'mdi:sun-showflake-variant',
+      'heat': 'mdifire:',
       'cool': 'mdi:snowflake',
-      'auto': 'mdi:thermostat',
-      'off': 'mdi:thermometer-off',
+      'auto': 'mdi:fan',
+      'dry': 'mdi:water',
+      'off': 'mdi:power-standby',
     }
 
     return html`
       <div class=${`donder-widget ${multiClass}`}>
         <!-- <div class='title'>${stateObj.attributes.friendly_name}</div> -->
         <span>
+          <div class='summary-state'>
+            <ha-icon icon=${icon[stateObj.state]}></ha-icon>
+          </div>
           <div class='summary-temp-internal'>
             <div class='summary-temp-number'>${stateObj.attributes.current_temperature}</div>
             <span class='summary-temp-unit'>${stateObj.attributes.temperature_unit}</span>
           </div>
           <div class='summary-temp-external'>${stateObj.attributes.ext_current_temperature}${stateObj.attributes.temperature_unit}</div>
-          <div class='summary-state'>
-            <div class='summary-state'>${friendlyStateName[stateObj.state]}</div>
-            <ha-icon icon=${icon[stateObj.state]}></ha-icon>
-          </div>
         </span>
         <!-- <div class='summary-state'>
           <div class='summary-state'>${friendlyStateName[stateObj.state]}</div>
