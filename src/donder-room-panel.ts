@@ -74,16 +74,22 @@ export class BoilerplateCard extends LitElement {
   }
 
   protected hasConfigOrEntityChanged(element: any, changedProps: PropertyValues, forceUpdate: boolean): boolean {
+
     if (changedProps.has('config') || forceUpdate) {
       return true;
     }
 
-    if (element.config!.room) {
+    if (element.config!.room_id) {
       const oldHass = changedProps.get('hass') as HomeAssistant | undefined;
       if (oldHass) {
         let hasChanged = false
-        const climateEntity = element.config.room.climate.entity
-        console.log("update", climateEntity, oldHass.states[climateEntity], element.hass!.states[climateEntity])
+        
+        const env = this.hass.states['donder_env.global'].attributes
+        const { rooms } = env
+        const roomId = this.config.room_id
+        const room = rooms.filter((room: any) => room.id === roomId)[0]
+        const climateEntity = room.climate.entity
+
         if (climateEntity && oldHass.states[climateEntity] !== element.hass!.states[climateEntity]) {
           hasChanged = true
         }
