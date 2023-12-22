@@ -199,6 +199,7 @@ const X=(t,e)=>"method"===e.kind&&e.descriptor&&!("value"in e.descriptor)?{...e,
         margin-bottom: 10px;
         margin-top: 20px;
         text-transform: uppercase;
+        text-align: center;
       }
       .room-temp-wrapper {
 
@@ -248,14 +249,14 @@ const X=(t,e)=>"method"===e.kind&&e.descriptor&&!("value"in e.descriptor)?{...e,
         align-content: center;
       }
       ha-card.ha-badge .ha-badge-content .ha-badge-title {
-        font-size: 1rem;
+        font-size: .8rem;
         font-weight: 400;
         margin-bottom: 4px;
         opacity: 0.7;
         text-transform: uppercase;
       }
       ha-card.ha-badge .ha-badge-content .ha-badge-status {
-        font-size: 1.2rem;
+        font-size: 1rem;
         font-weight: 500;
         line-height: normal;
       }
