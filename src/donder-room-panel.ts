@@ -138,15 +138,36 @@ export class BoilerplateCard extends LitElement {
         width: 100%;
         background-color: transparent !important;
       }
+      .room-title {
+        font-size: 1.5rem;
+        font-weight: 400;
+        margin-bottom: 10px;
+        margin-top: 20px;
+        text-transform: uppercase;
+      }
+      .room-temp {
+        display: flex;
+        align-items: flex-start;
+        margin-bottom: 5px;
+      }
+      .room-temp-number {
+        font-size: 6.5rem;
+        line-height: normal;
+      }
+      .room-temp-unit {
+
+      }
       ha-card.ha-badge {
         background-color: var(--card-background-color) !important;
         box-sizing: border-box;
         padding: var(--spacing);
         display: flex;
         height: auto;
+        margin: 5px 0;
       }
       ha-card.ha-badge ha-icon {
         border-radius: 50%;
+        background-color: rgba(255, 255, 255, 0.3);
         width: 42px;
         min-width: 42px;
         height: 42px;
@@ -190,30 +211,30 @@ export class BoilerplateCard extends LitElement {
         white-space: nowrap;
         width: 100%;
       }
-      .donder-widget.heat_cool {
+      ha-card.ha-badge.heat_cool {
         background: var(--mode-heat-cool-color);
         color: var(--card-background-color);
       }
-      .donder-widget.heat {
+      ha-card.ha-badge.heat {
         background: var(--mode-heat-color);
         color: var(--card-background-color);
       }
-      .donder-widget.cool {
+      ha-card.ha-badge.cool {
         background: var(--mode-cool-color);
         color: var(--card-background-color);
       }
-      .donder-widget.auto {
+      ha-card.ha-badge.auto {
         background: var(--mode-auto-color);
         color: var(--card-background-color);
       }
-      .donder-widget.dry {
+      ha-card.ha-badge.dry {
         background: var(--mode-dry-color);
         color: var(--card-background-color);
       }
-      .donder-widget.off {
+      ha-card.ha-badge.off {
         background: var(--mode-off-color);
       }
-      .donder-widget:before {
+      /* .donder-widget:before {
         content: "";
         display: inline-block;
         vertical-align: middle;
@@ -223,7 +244,7 @@ export class BoilerplateCard extends LitElement {
       .donder-widget span {
         display: inline-block;
         vertical-align: middle;
-      }
+      } */
       .summary-temp-internal {
         display: flex;
         align-items: flex-start;
@@ -289,8 +310,10 @@ export class BoilerplateCard extends LitElement {
         const modeClass = climateEntity.state
 
         widgetDom = html`
-          <span class='room-temp-number'>${climateEntity.attributes.current_temperature}</span>
-          <span class='room-temp-unit'>${climateEntity.attributes.temperature_unit}</span>
+          <div class="room-temp">
+            <span class='room-temp-number'>${climateEntity.attributes.current_temperature}</span>
+            <span class='room-temp-unit'>${climateEntity.attributes.temperature_unit}</span>
+          </div>
 
           <ha-card
             @action=${this._handleAction}
@@ -298,7 +321,7 @@ export class BoilerplateCard extends LitElement {
               hasHold: hasAction(this.config.hold_action),
               hasDoubleClick: hasAction(this.config.double_tap_action),
             })}
-            class='ha-badge'
+            class=${`ha-badge ${modeClass}`}
           >
             <ha-icon icon=${stateIcons[climateEntity.state]}></ha-icon>
             <div class="ha-badge-content">
