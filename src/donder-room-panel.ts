@@ -359,7 +359,7 @@ export class BoilerplateCard extends LitElement {
     const { rooms } = env
     const roomId = this.config.room_id
     const room = rooms.filter((room: any) => room.id === roomId)[0]
-    const climate = room.climate[0]
+    const climate = room.climate
 
     return html`
       <ha-card
