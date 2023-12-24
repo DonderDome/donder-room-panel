@@ -70,7 +70,7 @@ export class BoilerplateCard extends LitElement {
     if (!this.config) {
       return false;
     }
-    return this.hasConfigOrEntityChanged(this, changedProps, false);
+    return this.hasConfigOrEntityChanged(this, changedProps, true);
   }
 
   protected hasConfigOrEntityChanged(element: any, changedProps: PropertyValues, forceUpdate: boolean): boolean {
@@ -361,7 +361,7 @@ export class BoilerplateCard extends LitElement {
     const roomId = this.config.room_id
     const room = rooms.filter((room: any) => room.id === roomId)[0]
     const climate = room.climate
-
+    console.log(roomId, room)
     return html`
       <ha-card
         .header=${this.config.name}
