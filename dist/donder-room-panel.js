@@ -332,7 +332,7 @@ const X=(t,e)=>"method"===e.kind&&e.descriptor&&!("value"in e.descriptor)?{...e,
           <div class="ha-badge-status">${e}</div>
         </div>
       </ha-card>
-    `}render(){if(this.config.show_warning)return this._showWarning("warning message");if(this.config.show_error)return this._showError("error message");const t=this.hass.states["donder_env.global"].attributes,{rooms:e}=t,i=this.config.room_id,o=e.filter((t=>t.id===i))[0],n=o.climate;return console.log(i,o),O`
+    `}render(){if(this.config.show_warning)return this._showWarning("warning message");if(this.config.show_error)return this._showError("error message");const t=this.hass.states["donder_env.global"].attributes,{rooms:e}=t,i=this.config.room_id,o=e.filter((t=>t.id===i))[0],n=o.climate;return O`
       <ha-card
         .header=${this.config.name}
         @action=${this._handleAction}
