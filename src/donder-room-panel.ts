@@ -107,6 +107,8 @@ export class BoilerplateCard extends LitElement {
 
   private _handleAction(ev: ActionHandlerEvent): void {
     if (this.hass && this.config && ev.detail.action) {
+      // alert in window
+      window.alert(JSON.stringify(ev.detail.action));      
       handleAction(this, this.hass, this.config, ev.detail.action);
     }
   }
@@ -252,7 +254,6 @@ export class BoilerplateCard extends LitElement {
   }
 
   protected renderThermostat(climate: any) {
-    console.log(climate)
     const hasAC = climate?.entity
     const renderThermostat = hasAC || climate?.internal_temp
     const stateIcons = {
@@ -361,7 +362,7 @@ export class BoilerplateCard extends LitElement {
     const roomId = this.config.room_id
     const room = rooms.filter((room: any) => room.id === roomId)[0]
     const climate = room.climate
-    console.log(roomId, room)
+
     return html`
       <ha-card
         .header=${this.config.name}
