@@ -321,7 +321,7 @@ export class BoilerplateCard extends LitElement {
   protected renderExternaTemp(climate: any) {
     let status = ''
 
-    if (climate.entity) {
+    if (climate?.entity) {
       const climateEntity = this.hass.states[climate.entity]
       status = climateEntity.attributes.ext_current_temperature+' '+climateEntity.attributes.temperature_unit
     } else {
