@@ -107,8 +107,6 @@ export class BoilerplateCard extends LitElement {
 
   private _handleAction(ev: ActionHandlerEvent): void {
     if (this.hass && this.config && ev.detail.action) {
-      // alert in window
-      window.alert(JSON.stringify(ev.detail.action));      
       handleAction(this, this.hass, this.config, ev.detail.action);
     }
   }
@@ -287,7 +285,7 @@ export class BoilerplateCard extends LitElement {
           </div>
 
           <ha-card
-            @action=${this._handleAction}
+            @action=${(event) => this.toggleMoreInfo(event, climate.entity)}
             .actionHandler=${actionHandler({
               hasHold: hasAction(this.config.hold_action),
               hasDoubleClick: hasAction(this.config.double_tap_action),
