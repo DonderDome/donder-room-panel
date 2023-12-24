@@ -252,8 +252,9 @@ export class BoilerplateCard extends LitElement {
   }
 
   protected renderThermostat(climate: any) {
-    const hasAC = climate.entity
-    const renderThermostat = hasAC || climate.internal_temp
+    console.log(climate)
+    const hasAC = climate?.entity
+    const renderThermostat = hasAC || climate?.internal_temp
     const stateIcons = {
       'heat_cool': 'mdi:sun-snowflake-variant',
       'heat': 'mdi:fire',
