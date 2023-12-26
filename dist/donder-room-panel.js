@@ -320,7 +320,7 @@ const X=(t,e)=>"method"===e.kind&&e.descriptor&&!("value"in e.descriptor)?{...e,
         <div class="room-temp-wrapper">
           ${n}
         </div>
-      `}return null}renderExternaTemp(t){let e="";if(null==t?void 0:t.entity){const i=this.hass.states[t.entity];e=i.attributes.ext_current_temperature+" "+i.attributes.temperature_unit}else e=this.hass.states["sensor.openweathermap_forecast_temperature"].state+" "+this.hass.states["sensor.openweathermap_forecast_temperature"].attributes.unit_of_measurement;return O`
+      `}return null}renderExternaTemp(){const t=this.hass.states["sensor.openweathermap_forecast_temperature"].state+" "+this.hass.states["sensor.openweathermap_forecast_temperature"].attributes.unit_of_measurement;return O`
       <ha-card
         @action=${this._handleAction}
         .actionHandler=${Et({hasHold:_t(this.config.hold_action),hasDoubleClick:_t(this.config.double_tap_action)})}
@@ -329,7 +329,7 @@ const X=(t,e)=>"method"===e.kind&&e.descriptor&&!("value"in e.descriptor)?{...e,
         <ha-icon icon="mdi:thermometer"></ha-icon>
         <div class="ha-badge-content">
           <div class="ha-badge-title">Outside</div>
-          <div class="ha-badge-status">${e}</div>
+          <div class="ha-badge-status">${t}</div>
         </div>
       </ha-card>
     `}render(){if(this.config.show_warning)return this._showWarning("warning message");if(this.config.show_error)return this._showError("error message");const t=this.hass.states["donder_env.global"].attributes,{rooms:e}=t,i=this.config.room_id,o=e.filter((t=>t.id===i))[0],n=o.climate;return O`
@@ -342,7 +342,7 @@ const X=(t,e)=>"method"===e.kind&&e.descriptor&&!("value"in e.descriptor)?{...e,
         <div class='donder-widget-wrapper'>
           <div class="room-title">${o.name}</div>
           ${this.renderThermostat(n)} 
-          ${this.renderExternaTemp(n)}
+          ${this.renderExternaTemp()}
           
         </div>
       </ha-card>
