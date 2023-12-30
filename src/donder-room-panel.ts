@@ -96,6 +96,10 @@ export class BoilerplateCard extends LitElement {
             break
           }
         }
+
+        if (oldHass.states['sensor.openweathermap_forecast_temperature'] !== element.hass!.states['sensor.openweathermap_forecast_temperature']) {
+          hasChanged = true
+        }
         
         return hasChanged
       }
