@@ -354,6 +354,10 @@ export class BoilerplateCard extends LitElement {
   }
 
   protected renderPower(powerEntity: any) {
+    if (!powerEntity) {
+      return null;
+    }
+    
     const power = this.hass.states[powerEntity]?.state
     const unit = this.hass.states[powerEntity]?.attributes.unit_of_measurement as string
     const consumption = {
