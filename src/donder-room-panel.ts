@@ -357,7 +357,7 @@ export class BoilerplateCard extends LitElement {
     if (!powerEntity) {
       return null;
     }
-    
+    console.log(powerEntity, this.hass.states)    
     const power = this.hass.states[powerEntity]?.state
     const unit = this.hass.states[powerEntity]?.attributes.unit_of_measurement as string
     const consumption = {
