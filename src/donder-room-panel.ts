@@ -353,6 +353,38 @@ export class BoilerplateCard extends LitElement {
     `
   }
 
+  protected renderPower(powerEntity: any) {
+    const power = this.hass.states[powerEntity]?.state
+    const unit = this.hass.states[powerEntity]?.attributes.unit_of_measurement as string
+    const consumption = {
+      W: 0,
+      kW: 0,
+    }
+
+    if (power) {
+      consumption[unit] += parseFloat(power)
+    }
+
+    const totalConsumption = consumption.W + (consumption.kW / 1000)
+
+    return html`
+      <ha-card
+        @action=${this._handleAction}
+        .actionHandler=${actionHandler({
+          hasHold: hasAction(this.config.hold_action),
+          hasDoubleClick: hasAction(this.config.double_tap_action),
+        })}
+        class='ha-badge'
+      >
+        <ha-icon icon="mdi:thermometer"></ha-icon>
+        <div class="ha-badge-content">
+          <div class="ha-badge-title">Consumption</div>
+          <div class="ha-badge-status">${totalConsumption}</div>
+        </div>
+      </ha-card>
+    `
+  }
+
   protected render(): TemplateResult | void {
     // TODO Check for stateObj or other necessary things and render a warning if missing
     if (this.config.show_warning) {
@@ -369,6 +401,7 @@ export class BoilerplateCard extends LitElement {
     const roomId = this.config.room_id
     const room = rooms.filter((room: any) => room.id === roomId)[0]
     const climate = room.climate
+    const powerEntity = room.power
 
     return html`
       <ha-card
@@ -384,7 +417,7 @@ export class BoilerplateCard extends LitElement {
           <div class="room-title">${room.name}</div>
           ${this.renderThermostat(climate)} 
           ${this.renderExternaTemp()}
-          
+          ${this.renderPower(powerEntity)}          
         </div>
       </ha-card>
     `;
