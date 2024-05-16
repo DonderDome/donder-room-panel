@@ -369,7 +369,6 @@ export class BoilerplateCard extends LitElement {
       console.log("has power")
       consumption[unit] += parseFloat(powerValue)
     }
-    console.log(powerValue, unit, consumption)
     const totalConsumption = consumption.W + (consumption.kW / 1000)
 
     return html`

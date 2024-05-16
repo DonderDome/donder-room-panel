@@ -332,7 +332,7 @@ const X=(t,e)=>"method"===e.kind&&e.descriptor&&!("value"in e.descriptor)?{...e,
           <div class="ha-badge-status">${t}</div>
         </div>
       </ha-card>
-    `}renderPower(t){var e,i;if(!t)return null;const o=null===(e=this.hass.states[null==t?void 0:t.entity])||void 0===e?void 0:e.state,n=null===(i=this.hass.states[null==t?void 0:t.entity])||void 0===i?void 0:i.attributes.unit_of_measurement,s={W:0,kW:0};o&&(console.log("has power"),s[n]+=parseFloat(o)),console.log(o,n,s);const r=s.W+s.kW/1e3;return H`
+    `}renderPower(t){var e,i;if(!t)return null;const o=null===(e=this.hass.states[null==t?void 0:t.entity])||void 0===e?void 0:e.state,n=null===(i=this.hass.states[null==t?void 0:t.entity])||void 0===i?void 0:i.attributes.unit_of_measurement,s={W:0,kW:0};o&&(console.log("has power"),s[n]+=parseFloat(o));const r=s.W+s.kW/1e3;return H`
       <ha-card
         @action=${this._handleAction}
         .actionHandler=${Et({hasHold:_t(this.config.hold_action),hasDoubleClick:_t(this.config.double_tap_action)})}
