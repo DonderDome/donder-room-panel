@@ -357,7 +357,7 @@ export class BoilerplateCard extends LitElement {
     if (!powerEntity) {
       return null;
     }
-    console.log(powerEntity, this.hass.states)    
+    
     const power = this.hass.states[powerEntity]?.state
     const unit = this.hass.states[powerEntity]?.attributes.unit_of_measurement as string
     const consumption = {
@@ -366,9 +366,10 @@ export class BoilerplateCard extends LitElement {
     }
 
     if (power) {
+      console.log("has power")
       consumption[unit] += parseFloat(power)
     }
-
+    console.log(power, unit, consumption)
     const totalConsumption = consumption.W + (consumption.kW / 1000)
 
     return html`
