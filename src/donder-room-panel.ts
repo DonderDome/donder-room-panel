@@ -353,23 +353,23 @@ export class BoilerplateCard extends LitElement {
     `
   }
 
-  protected renderPower(powerEntity: any) {
-    if (!powerEntity) {
+  protected renderPower(power: any) {
+    if (!power) {
       return null;
     }
     
-    const power = this.hass.states[powerEntity]?.state
-    const unit = this.hass.states[powerEntity]?.attributes.unit_of_measurement as string
+    const powerValue = this.hass.states[power?.entity]?.state
+    const unit = this.hass.states[power?.entity]?.attributes.unit_of_measurement as string
     const consumption = {
       W: 0,
       kW: 0,
     }
 
-    if (power) {
+    if (powerValue) {
       console.log("has power")
-      consumption[unit] += parseFloat(power)
+      consumption[unit] += parseFloat(powerValue)
     }
-    console.log(power, unit, consumption)
+    console.log(powerValue, unit, consumption)
     const totalConsumption = consumption.W + (consumption.kW / 1000)
 
     return html`
@@ -406,7 +406,7 @@ export class BoilerplateCard extends LitElement {
     const roomId = this.config.room_id
     const room = rooms.filter((room: any) => room.id === roomId)[0]
     const climate = room.climate
-    const powerEntity = room.power
+    const power = room.power
 
     return html`
       <ha-card
@@ -422,7 +422,7 @@ export class BoilerplateCard extends LitElement {
           <div class="room-title">${room.name}</div>
           ${this.renderThermostat(climate)} 
           ${this.renderExternaTemp()}
-          ${this.renderPower(powerEntity)}          
+          ${this.renderPower(power)}          
         </div>
       </ha-card>
     `;
