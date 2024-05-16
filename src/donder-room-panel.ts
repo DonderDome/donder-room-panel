@@ -366,7 +366,6 @@ export class BoilerplateCard extends LitElement {
     }
 
     if (powerValue) {
-      console.log("has power")
       consumption[unit] += parseFloat(powerValue)
     }
     const totalConsumption = consumption.W + (consumption.kW / 1000)
@@ -380,10 +379,10 @@ export class BoilerplateCard extends LitElement {
         })}
         class='ha-badge'
       >
-        <ha-icon icon="mdi:thermometer"></ha-icon>
+        <ha-icon icon="mdi:lightning-bolt"></ha-icon>
         <div class="ha-badge-content">
           <div class="ha-badge-title">Consumption</div>
-          <div class="ha-badge-status">${totalConsumption}</div>
+          <div class="ha-badge-status">${totalConsumption >= 1000 ? `${(totalConsumption/1000).toFixed(1)} kW` : `${totalConsumption.toFixed(1)} W`}</div>
         </div>
       </ha-card>
     `
