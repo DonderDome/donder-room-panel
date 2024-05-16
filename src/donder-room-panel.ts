@@ -372,7 +372,7 @@ export class BoilerplateCard extends LitElement {
 
     return html`
       <ha-card
-        @action=${this._handleAction}
+        @action=${(event) => this.toggleMoreInfo(event, power.entity)}
         .actionHandler=${actionHandler({
           hasHold: hasAction(this.config.hold_action),
           hasDoubleClick: hasAction(this.config.double_tap_action),
