@@ -213,8 +213,33 @@ export class BoilerplateCard extends LitElement {
         font-weight: 500;
         line-height: normal;
       }
-      .donder-widget-wrapper {
-        /* padding: 5%; */
+      .room-scenes-title {
+        text-transform: uppercase;
+        margin: 30px 0 10px;
+        opacity: 0.6;
+        font-size: 0.8em;
+      }
+      .scene {
+        background-color: var(--ha-card-background);
+        color: var(--text-primary-color);
+        padding: 15px 22px;
+        box-sizing: border-box;
+        text-align: center;
+        border-radius: var(--scene-border-radius);
+        font-size: 10px;
+        text-transform: uppercase;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-right: 5px;
+        margin-top: 5px;
+      }
+      .add-scene-icon {
+        width: 40px;
+      }
+      .summary-group-scenes {
+        display: flex;
+        flex-wrap: wrap;
       }
       .donder-widget {
         display: inline-block;
