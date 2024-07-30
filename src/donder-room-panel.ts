@@ -372,7 +372,7 @@ export class BoilerplateCard extends LitElement {
         <ha-icon icon="mdi:thermometer"></ha-icon>
         <div class="ha-badge-content">
           <div class="ha-badge-title">Outside</div>
-          <div class="ha-badge-status">${Math.floor(parseFloat(status))}</div>iv>
+          <div class="ha-badge-status">${Math.round(parseFloat(status))}</div>iv>
         </div>
       </ha-card>
     `
