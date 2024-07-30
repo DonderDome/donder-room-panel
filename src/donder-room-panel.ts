@@ -353,7 +353,7 @@ export class BoilerplateCard extends LitElement {
 
   protected renderExternaTemp() {
     const status = this.hass.states['sensor.openweathermap_forecast_temperature'].state+' '+this.hass.states['sensor.openweathermap_forecast_temperature'].attributes.unit_of_measurement
-
+    
     // if (climate?.entity) {
     //   const climateEntity = this.hass.states[climate.entity]
     //   status = climateEntity.attributes.ext_current_temperature+' '+climateEntity.attributes.temperature_unit
@@ -372,7 +372,7 @@ export class BoilerplateCard extends LitElement {
         <ha-icon icon="mdi:thermometer"></ha-icon>
         <div class="ha-badge-content">
           <div class="ha-badge-title">Outside</div>
-          <div class="ha-badge-status">${status}</div>
+          <div class="ha-badge-status">${Math.floor(parseFloat(status))}</div>iv>
         </div>
       </ha-card>
     `
