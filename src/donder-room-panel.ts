@@ -388,6 +388,74 @@ export class BoilerplateCard extends LitElement {
     `
   }
 
+  protected renderScenes(roomName: string) {
+    const scenes = this.hass.states['donder_scenes.global']?.attributes
+    const sceneKeys = Object.keys(scenes)
+    const filteredSceneKeys = sceneKeys.filter((item) => scenes[item].group === roomName);
+
+    console.log(roomName, filteredSceneKeys)
+
+    return html`
+      <div class="room-scenes">
+        <div class="room-scenes-title">Scenes</div>
+        <div class='summary-group-scenes'>
+          ${filteredSceneKeys.map(scene => {
+            return html`
+              <div
+                @action=${(e) => this._handleSceneAction(e, scene)}
+                class="scene"
+                .actionHandler=${actionHandler({
+                  hasHold: hasAction(this.config.hold_action),
+                })}
+              >${scenes[scene].name}</div>
+            `
+          })}
+          <div class="scene" @click=${() => this._toggleEditScene(null, roomName)}>
+            <div class="add-scene-icon">
+              <ha-icon icon='mdi:plus'></ha-icon>
+            </div>
+          </div>
+        </div>
+      </div>
+    `
+  }
+
+  protected _handleSceneAction(ev: ActionHandlerEvent, scene): void {
+    const { action } = ev?.detail
+
+    if (action === 'hold') {
+      this._toggleEditScene(scene)
+    }
+
+    if (action === 'tap') {
+      this.hass.callService('donder_scenes', 'trigger', {scene: scene})
+    }
+  }
+
+  protected _toggleEditScene(scene?: any, roomName?: string) {
+    console.log("Editing / Adding", roomName, scene)
+    const env = this.hass.states['donder_env.global'].attributes
+    this.hass.callService('browser_mod', 'popup', {
+      content: {
+        type: 'custom:donder-scene-modal',
+        isNested: false,
+        isNew: !scene,
+        sensors: env.sensors,
+        devices: [
+          ...env.shutters || [],
+          ...env.switches || [],
+        ],
+        locked: false,
+        sceneName: this.config.scene,
+        scene: scene ? this.hass.states['donder_scenes.global'].attributes[scene] : null,
+        roomName: roomName || null,
+        closeModal: true,
+      },
+      size: "wide",
+      browser_id: localStorage.getItem('browser_mod-browser-id'),
+    })
+  }
+
   protected render(): TemplateResult | void {
     // TODO Check for stateObj or other necessary things and render a warning if missing
     if (this.config.show_warning) {
@@ -420,7 +488,8 @@ export class BoilerplateCard extends LitElement {
           <div class="room-title">${room.name}</div>
           ${this.renderThermostat(climate)} 
           ${this.renderExternaTemp()}
-          ${this.renderPower(power)}          
+          ${this.renderPower(power)}         
+          ${this.renderScenes(room.name)} 
         </div>
       </ha-card>
     `;
